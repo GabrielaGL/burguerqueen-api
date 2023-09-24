@@ -1,3 +1,9 @@
+const model = require("../models/user");
+
 exports.getData = (req, res) => {
-    res.send({ data: 'Esto viene desde USER' })
-}
+  model.find({}, (err, docs) => {
+    res.send({
+      docs,
+    });
+  });
+};
