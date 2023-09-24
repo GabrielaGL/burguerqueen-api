@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const DB_URI = "mongodb://127.0.0.1";
+const DB_URI = "mongodb://127.0.0.1/burguer_queen";
 
 module.exports = () => {
   const connect = () => {
