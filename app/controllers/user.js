@@ -1,8 +1,13 @@
+const { default: mongoose } = require("mongoose");
 const model = require("../models/user");
 
 const options = {
-    page: 1,
-    limit: 10
+  page: 1,
+  limit: 10,
+};
+
+const parseId = (id) => {
+  return mongoose.Types.ObjectId(id);
 };
 
 exports.getData = (req, res) => {
@@ -21,5 +26,15 @@ exports.insertData = (req, res) => {
     } else {
       res.send({ users: docs });
     }
+  });
+};
+
+exports.updateSingle = (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+  model.updateOne({ _id: parseId(req.params.id) }, body, (err, docs) => {
+    res.send({
+      users: docs,
+    });
   });
 };

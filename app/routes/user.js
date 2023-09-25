@@ -15,4 +15,10 @@ router.post(
     controller.insertData
 )
 
+router.put(
+    `/${path}/:id`,
+    controller.updateSingle
+)
+
+
 module.exports = router;
