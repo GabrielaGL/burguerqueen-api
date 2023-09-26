@@ -13,7 +13,16 @@ const parseId = (id) => {
 exports.getData = (req, res) => {
   model.paginate({}, options, (err, docs) => {
     res.send({
-      docs,
+      users: docs,
+    });
+  });
+};
+
+exports.getSingleData = (req, res) => {
+  const { id } = req.params;
+  model.findOne({ _id: parseId(id) }, (err, docs) => {
+    res.send({
+      user: docs,
     });
   });
 };

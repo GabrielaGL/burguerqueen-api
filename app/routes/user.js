@@ -10,6 +10,11 @@ router.get(
     controller.getData
 );
 
+router.get(
+    `/${path}/:id`,
+    controller.getSingleData
+);
+
 router.post(
     `/${path}`,
     controller.insertData

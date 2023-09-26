@@ -18,6 +18,15 @@ exports.getData = (req, res) => {
   });
 };
 
+exports.getSingleData = (req, res) => {
+  const { id } = req.params;
+  model.findOne({ _id: parseId(id) }, (err, docs) => {
+    res.send({
+      product: docs,
+    });
+  });
+};
+
 exports.insertData = (req, res) => {
   const data = req.body;
   model.create(data, (err, docs) => {
