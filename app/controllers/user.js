@@ -38,3 +38,12 @@ exports.updateSingle = (req, res) => {
     });
   });
 };
+
+exports.deleteSingle = (req, res) => {
+    const { id } = req.params;
+    model.deleteOne({ _id: parseId(id) }, (err, docs) => {
+      res.send({
+        users: docs,
+      });
+    });
+  };
