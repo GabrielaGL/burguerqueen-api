@@ -1,4 +1,6 @@
 const { default: mongoose } = require("mongoose");
+const bcrypt = require("bcrypt");
+
 const model = require("../models/user");
 
 const options = {
@@ -8,6 +10,18 @@ const options = {
 
 const parseId = (id) => {
   return mongoose.Types.ObjectId(id);
+};
+
+const hashPass = (user) => {
+  bcrypt.hash(user.password, 5, (error, newHash) => {
+    if (error) {
+      console.log(error);
+      return error;
+    }
+    user.password = newHash;
+    user.save();
+    return user;
+  });
 };
 
 exports.getData = (req, res) => {
@@ -31,9 +45,10 @@ exports.insertData = (req, res) => {
   const data = req.body;
   model.create(data, (err, docs) => {
     if (err) {
-      res.send({ error: "Error" }, 422);
+      res.send({ error: err });
     } else {
-      res.send({ users: docs });
+      const hashData = hashPass(docs);
+      res.send({ users: hashData });
     }
   });
 };
