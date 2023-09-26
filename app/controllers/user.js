@@ -32,7 +32,7 @@ exports.insertData = (req, res) => {
 exports.updateSingle = (req, res) => {
   const { id } = req.params;
   const body = req.body;
-  model.updateOne({ _id: parseId(req.params.id) }, body, (err, docs) => {
+  model.updateOne({ _id: parseId(id) }, body, (err, docs) => {
     res.send({
       users: docs,
     });
@@ -40,10 +40,10 @@ exports.updateSingle = (req, res) => {
 };
 
 exports.deleteSingle = (req, res) => {
-    const { id } = req.params;
-    model.deleteOne({ _id: parseId(id) }, (err, docs) => {
-      res.send({
-        users: docs,
-      });
+  const { id } = req.params;
+  model.deleteOne({ _id: parseId(id) }, (err, docs) => {
+    res.send({
+      users: docs,
     });
-  };
+  });
+};
