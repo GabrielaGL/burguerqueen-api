@@ -1,8 +1,9 @@
 const express = require("express");
 const initDB = require("./config/db");
 
-const userRouters = require("./app/routes/user");
-const itemsRouters = require("./app/routes/items");
+const usersRouters = require("./app/routes/user");
+const productsRouters = require("./app/routes/products");
+const ordersRouters = require("./app/routes/orders");
 
 const app = express();
 const port = 8080;
@@ -15,8 +16,9 @@ app.use(
     })
 );
 
-app.use(userRouters);
-app.use(itemsRouters);
+app.use(usersRouters);
+app.use(productsRouters);
+app.use(ordersRouters);
 
 app.listen(port, () => {
   console.log("La aplicación está en línea!");
