@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const model = require('../models/user');
-const env = require("../../env");
 
 
 const findUser = (email) => {
@@ -22,7 +21,7 @@ const generateToken = (user) => {
             exp: expiration
         },
 
-        env.jsonToken
+        process.env.jsonToken
     )
 }
 

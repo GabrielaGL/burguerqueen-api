@@ -12,9 +12,9 @@ const port = 8080;
 app.use(express.json());
 
 app.use(
-    express.urlencoded({
-        extended: true
-    })
+  express.urlencoded({
+    extended: true,
+  })
 );
 
 app.use(usersRouters);
@@ -22,10 +22,9 @@ app.use(productsRouters);
 app.use(ordersRouters);
 app.use(authRouters);
 
-
+initDB();
 
 app.listen(port, () => {
   console.log("La aplicación está en línea!");
 });
 
-initDB();
