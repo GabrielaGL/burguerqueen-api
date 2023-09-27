@@ -45,10 +45,11 @@ exports.insertData = (req, res) => {
   const data = req.body;
   model.create(data, (err, docs) => {
     if (err) {
-      res.send({ error: err });
+      res.send({ error: "Error" }, 422);
+      console.log(err);
     } else {
-      const hashData = hashPass(docs);
-      res.send({ users: hashData });
+      const hashDocs = hashPass(docs);
+      res.send({ users: hashDocs });
     }
   });
 };
