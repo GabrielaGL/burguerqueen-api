@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+require('dotenv').config();
 
-const DB_URI = "mongodb://127.0.0.1/burguer_queen";
+const DB_URI = process.env.connectionString;
 
 module.exports = () => {
   const connect = () => {
