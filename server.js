@@ -17,6 +17,16 @@ app.use(
   })
 );
 
+app.use((_, res, next) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.set("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+  res.set(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  return next();
+});
+
 app.use(usersRouters);
 app.use(productsRouters);
 app.use(ordersRouters);
@@ -27,4 +37,3 @@ initDB();
 app.listen(port, () => {
   console.log("La aplicación está en línea!");
 });
-
